@@ -1,5 +1,5 @@
 {
-  "name": "mobx-most",
+  "name": "@cotto/mobx-most",
   "description": "mobx-most",
   "version": "0.0.1",
   "author": "cotto",
@@ -11,7 +11,7 @@
     "babel": "inherit"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/cotttpan/mobx-most/issues"
   },
   "dependencies": {
     "most": "^1.4.1",
@@ -35,12 +35,15 @@
     "README.md",
     "LICENCE"
   ],
-  "keywords": [],
+  "keywords": [
+    "most",
+    "mobx"
+  ],
   "license": "MIT",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/cotttpan/mobx-most.git"
   },
   "scripts": {
     "build": "npm-run-all build:*",
@@ -50,6 +53,8 @@
     "clean:dist": "rimraf ./dist",
     "clean:test": "rimraf ./test/compiled",
     "lint": "tslint src/**/*.ts",
+    "myprepublish": "run-s clean:dist build:dist",
+    "mypublish": "npm run myprepublish && npm publish --access=public",
     "start": "tsc -w",
     "test": "NODE_ENV=test npm-run-all clean:test build:test -p 'build:test -- -w' 'test:ava -- -w'",
     "test:ava": "ava -w"
