@@ -4,6 +4,13 @@ export interface Listener<T, K extends keyof T> {
     (action: { type: K, payload: T[K] }): any;
 }
 
+/**
+ * Dispatcher
+ *
+ * @export
+ * @class Dispatcher
+ * @template T
+ */
 export class Dispatcher<T = any> {
     protected _listeners: Function[] = [];
 

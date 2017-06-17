@@ -21,6 +21,17 @@ export interface Options<A> {
     onObserve?: (v: any) => any;
 }
 
+/**
+ * create store
+ *
+ * @export
+ * @template S
+ * @template A
+ * @param {S} state
+ * @param {RootEpic<S>} epic
+ * @param {Options<A>} [options={}]
+ * @returns
+ */
 export function createStore<S, A = any>(state: S, epic: RootEpic<S>, options: Options<A> = {}) {
     const dispatcher = options.dispatcher || new Dispatcher<A>();
     const onObserve = options.onObserve || identity;
