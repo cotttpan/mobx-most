@@ -1,0 +1,58 @@
+{
+  "name": "mobx-most",
+  "description": "mobx-most",
+  "version": "0.0.1",
+  "author": "cotto",
+  "ava": {
+    "files": [
+      "./test/compiled/**/*.test.js"
+    ],
+    "verbose": true,
+    "babel": "inherit"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "dependencies": {
+    "most": "^1.4.1",
+    "most-subject": "^5.3.0"
+  },
+  "devDependencies": {
+    "@cotto/tslint-config": "^0.0.4",
+    "@types/node": "^7.0.31",
+    "@types/sinon": "^2.3.1",
+    "ava": "^0.19.1",
+    "mobx": "^3.1.15",
+    "mobx-utils": "^2.0.2",
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
+    "sinon": "^2.3.4",
+    "tslint": "^5.4.3",
+    "typescript": "^2.3.4"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENCE"
+  ],
+  "keywords": [],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "build": "npm-run-all build:*",
+    "build:dist": "tsc",
+    "build:test": "tsc -p test",
+    "clean": "run-p clean:**",
+    "clean:dist": "rimraf ./dist",
+    "clean:test": "rimraf ./test/compiled",
+    "lint": "tslint src/**/*.ts",
+    "start": "tsc -w",
+    "test": "NODE_ENV=test npm-run-all clean:test build:test -p 'build:test -- -w' 'test:ava -- -w'",
+    "test:ava": "ava -w"
+  },
+  "types": "dist/index.d.ts"
+}
