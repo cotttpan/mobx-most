@@ -1,7 +1,7 @@
 import { Stream } from 'most';
 import { async } from 'most-subject';
 import { identity } from './utils';
-import { Dispatcher } from './dispatcher';
+import { Dispatcher } from '@cotto/dispatcher';
 
 export interface Action<T = any, K extends keyof T = any> {
     type: K;

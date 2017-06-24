@@ -37,6 +37,10 @@
     ansi-styles "^2.2.1"
     esutils "^2.0.2"
 
+"@cotto/dispatcher@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@cotto/dispatcher/-/dispatcher-0.0.1.tgz#e49be83fbbefed01de2eae165c1e3185e08664a9"
+
 "@cotto/tslint-config@^0.0.4":
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@cotto/tslint-config/-/tslint-config-0.0.4.tgz#f50ce9f854373412f6cdbc111b4db201d531add2"
