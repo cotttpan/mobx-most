@@ -12,7 +12,7 @@ export interface RootEpic<S> {
     (action: Stream<Action>, state: S): Stream<any>;
 }
 
-export interface Epic<A, S, C = any> {
+export interface Epic<A extends Action, S, C = any> {
     (action: Stream<A>, state: S, context: C): Stream<any>;
 }
 
@@ -32,7 +32,8 @@ export interface Options<A> {
  * @param {Options<A>} [options={}]
  * @returns
  */
-export function createStore<S, A = any>(state: S, epic: RootEpic<S>, options: Options<A> = {}) {
+export function createStore<S, A = any>(state: S | (() => S), epic: RootEpic<S>, options: Options<A> = {}) {
+    state = (typeof state === 'function') ? state() : state;
     const dispatcher = options.dispatcher || new Dispatcher<A>();
     const onObserve = options.onObserve || identity;
     const actionIn$ = async<any>();

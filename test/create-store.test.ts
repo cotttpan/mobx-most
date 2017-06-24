@@ -23,7 +23,7 @@ interface ActionTypes {
 
 test('initial action', t => {
     const spy = sinon.spy();
-    createStore(new State(), (action$) => action$, { onObserve: spy });
+    createStore(() => new State(), (action$) => action$, { onObserve: spy });
 
     return Promise.resolve().then(() => {
         t.true(spy.calledWith({ type: '@@mobx-most/EPIC_BEGIN', payload: null }));
