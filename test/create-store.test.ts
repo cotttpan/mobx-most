@@ -36,7 +36,7 @@ test('createStore with options', t => {
     const spy = sinon.spy();
     const dispatcher = new Dispatcher<ActionTypes>();
     const state = new State();
-    const rootEpic: RootEpic<State> = (action$, s) => {
+    const rootEpic: RootEpic<ActionTypes, State> = (action$, s) => {
         return action$
             .filter(x => x.type === 'increment')
             .tap((x) => s.increment(x.payload))
@@ -59,7 +59,7 @@ test('createStore with options', t => {
 
 test.cb('state stream', t => {
     t.plan(1);
-    const epic: RootEpic<State> = (_, s) => {
+    const epic: RootEpic<ActionTypes, State> = (_, s) => {
         return from(toStream(() => s.count))
             .tap((x) => t.is(x, 1))
             .tap(() => t.end());

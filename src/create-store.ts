@@ -8,8 +8,8 @@ export interface Action<T = any, K extends keyof T = any> {
     payload: T[K];
 }
 
-export interface RootEpic<S> {
-    (action: Stream<Action>, state: S): Stream<any>;
+export interface RootEpic<A, S> {
+    (action: Stream<Action<A>>, state: S): Stream<any>;
 }
 
 export interface Epic<A extends Action, S, C = any> {
@@ -22,17 +22,17 @@ export interface Options<A> {
 }
 
 /**
- * create store
+ *  * create store
  *
  * @export
  * @template S
  * @template A
- * @param {S} state
- * @param {RootEpic<S>} epic
+ * @param {(S | (() => S))} state
+ * @param {RootEpic<A, S>} epic
  * @param {Options<A>} [options={}]
  * @returns
  */
-export function createStore<S, A = any>(state: S | (() => S), epic: RootEpic<S>, options: Options<A> = {}) {
+export function createStore<S, A = any>(state: S | (() => S), epic: RootEpic<A, S>, options: Options<A> = {}) {
     state = (typeof state === 'function') ? state() : state;
     const dispatcher = options.dispatcher || new Dispatcher<A>();
     const onObserve = options.onObserve || identity;
@@ -46,6 +46,6 @@ export function createStore<S, A = any>(state: S | (() => S), epic: RootEpic<S>,
 
     return {
         state,
-        dispatch: dispatcher.dispatch.bind(dispatcher) as typeof dispatcher.dispatch
+        dispatch: dispatcher.dispatch
     };
 }

@@ -9,8 +9,8 @@ import { Action } from './create-store';
  * @param {Stream<Action<T, string>>} action$
  * @returns
  */
-export function select<T, K1 extends keyof T, K2 extends K1>(type: K2, action$: Stream<Action<T, K1>>) {
-    return action$
+export function select<T, K extends keyof T>(type: K, action$: Stream<Action<T>>): Stream<T[K]> {
+    return (action$ as Stream<Action<T, K>>)
         .filter(x => x.type === type)
         .map(x => x.payload);
 }

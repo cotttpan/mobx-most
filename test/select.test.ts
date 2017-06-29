@@ -1,13 +1,18 @@
 import test from 'ava';
-import { of } from 'most';
+import { from, merge } from 'most';
 import { select } from './../src/select';
 import { Action } from './../src/index';
 
 test('select', t => {
-    t.plan(1);
+    t.plan(2);
 
-    type T = { a: number };
-    type Action$ = Action<T, 'a'>;
-    const stream = of<Action$>({ type: 'a', payload: 1 });
-    return select('a', stream).observe(x => t.is(x, 1));
+    interface Types {
+        a: number;
+        b: string;
+    }
+
+    const action$ = from<Action<Types>>([{ type: 'a', payload: 1 }, { type: 'b', payload: 'str' }]);
+    const s1 = select('a', action$).tap(x => t.is(x, 1));
+    const s2 = select('b', action$).tap(x => t.is(x, 'str'));
+    return merge<any>(s1, s2).drain();
 });
