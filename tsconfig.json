@@ -20,6 +20,8 @@
         "noEmitOnError": true,
         "sourceMap": true,
         "forceConsistentCasingInFileNames": true,
+        // https://github.com/Microsoft/TypeScript/issues/16777
+        "noStrictGenericChecks": true,
         "skipDefaultLibCheck": true,
         "skipLibCheck": true,
         "pretty": true,
