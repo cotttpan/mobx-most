@@ -1,7 +1,9 @@
 {
     "extends": "./../tsconfig",
     "compilerOptions": {
-        "outDir": "./compiled"
+        "outDir": "./compiled",
+        // https://github.com/Microsoft/TypeScript/issues/16777
+        "noStrictGenericChecks": true
     },
     "include": [
         "./**/*.test.ts"

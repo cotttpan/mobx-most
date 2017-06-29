@@ -21,6 +21,7 @@
         "sourceMap": true,
         "forceConsistentCasingInFileNames": true,
         "skipDefaultLibCheck": true,
+        "skipLibCheck": true,
         "pretty": true,
         "types": [
             "node"
