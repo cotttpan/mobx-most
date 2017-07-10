@@ -46,6 +46,6 @@ export function createStore<S, A = any>(state: S | (() => S), epic: RootEpic<A, 
 
     return {
         state,
-        dispatch: dispatcher.dispatch
+        dispatch: dispatcher.dispatch.bind(dispatcher) as typeof dispatcher.dispatch
     };
 }
